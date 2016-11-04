@@ -1,12 +1,12 @@
-package com.precisiondrilling.fu;
+package io.github.mikeyfreake.fileutility;
 
 import java.util.List;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-import com.precisiondrilling.fu.commands.MoveCommand;
-import com.precisiondrilling.fu.commands.SearchCommand;
+import io.github.mikeyfreake.fileutility.commands.MoveCommand;
+import io.github.mikeyfreake.fileutility.commands.SearchCommand;
 
 public class Application {
 
@@ -34,6 +34,9 @@ public class Application {
 			switch (inputString) {
 			case "s":
 				fileList = doSearch();
+				break;
+			case "p":
+				printCommands();
 				break;
 			case "m":
 				if (fileList == null || fileList.isEmpty()) {
@@ -79,10 +82,10 @@ public class Application {
 
 		String regex, directory;
 
-		regex = requestInput("Enter regex: ", false);
+		regex = requestInput("Enter text: ", false);
 		directory = requestInput("Enter folder directory: ", false);
 
-		List<File> fileList = sc.regexSearch(regex, directory);
+		List<File> fileList = sc.textSearch(regex, directory);
 		System.out.println("Found the following files: ");
 
 		for (int i = 1; i <= fileList.size(); i++) {
@@ -93,12 +96,12 @@ public class Application {
 	}
 
 	private static void printCommands() {
-		System.out.println("Command List");
-		System.out.println("\tSearch for files containing text (s)");
-		System.out.println("\tMove selected files (m)");
-		System.out.println("\tCopy selected files (c)");
-		System.out.println("\tPrint commands (p)");
-		System.out.println("\tQuit (q)");
+		System.out.println("Command List" 
+				+ "\n\tSearch for files containing text (s)" 
+				+ "\n\tMove selected files (m)"
+				+ "\n\tCopy selected files (c)" 
+				+ "\n\tPrint commands (p)" 
+				+ "\n\tQuit (q)");
 	}
 
 	private static String requestInput(String message, boolean acceptNull) {

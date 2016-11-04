@@ -1,4 +1,4 @@
-package com.precisiondrilling.fu.commands;
+package io.github.mikeyfreake.fileutility.commands;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,8 +9,8 @@ import java.util.List;
 
 public class SearchCommand {
 
-	public List<File> regexSearch(String regex, String directory) throws IOException {
-		System.out.println("Searching for '" + regex + "' in directory '" + directory + "'");
+	public List<File> textSearch(String searchString, String directory) throws IOException {
+		System.out.println("Searching for '" + searchString + "' in directory '" + directory + "'");
 
 		List<File> fileList = new ArrayList<File>();
 
@@ -31,7 +31,7 @@ public class SearchCommand {
 				}
 				reader.close();
 				final String stringContents = contents.toString();
-				if (stringContents.toString().contains(regex)) {
+				if (stringContents.toString().contains(searchString)) {
 					fileList.add(file);
 				}
 			}
