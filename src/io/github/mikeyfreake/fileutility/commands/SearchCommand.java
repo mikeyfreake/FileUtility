@@ -19,7 +19,10 @@ public class SearchCommand {
 		// Validate that the directory exists.
 		if (folder.exists() && folder.isDirectory()) {
 
-			for (File file : folder.listFiles()) {
+			File[] files = folder.listFiles();
+			System.out.println("\tNumber of files to search: " + files.length);
+			
+			for (File file : files) {
 				if (file.isDirectory()) {
 					continue;
 				}
@@ -31,7 +34,7 @@ public class SearchCommand {
 				}
 				reader.close();
 				final String stringContents = contents.toString();
-				if (stringContents.toString().contains(searchString)) {
+				if (stringContents.contains(searchString)) {
 					fileList.add(file);
 				}
 			}
